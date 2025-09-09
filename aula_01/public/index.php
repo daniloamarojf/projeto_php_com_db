@@ -11,8 +11,8 @@
     <h1>Minas Tarefas</h1>
     
     <!-- Formulário para adicionar nova tarefa -->
-     <input type="text" id="novatarefa" placeholder="Digite uma nova tarefa...">
-     <button id="btnAdicinar">Adicionar</button>
+     <input type="text" id="novaTarefa" placeholder="Digite uma nova tarefa...">
+     <button id="btnAdicionar">Adicionar</button>
 
      <!-- Lista de tarefas -->
       <ul id="listaTarefas"></ul>
@@ -26,7 +26,7 @@
             const lista = document.getElementById("listaTarefas");
             lista.innerHTML = ""; // Limpa antes de listar
 
-            tarefas.foreach(t => {
+            tarefas.forEach(t => {
                 const li = document.createElement("li");
                 li.textContent = t.titulo;
 
@@ -35,7 +35,7 @@
                 }
 
                 // Botão concluir
-                const btnConcluir = document.createElemnt("button");
+                const btnConcluir = document.createElement("button");
                 btnConcluir.textContent = t.concluida == 1 ? "Desfazer" : "Concluir";
                 btnConcluir.onclick = async () => {
                     await fetch("../api/atualizar.php", {
@@ -51,9 +51,9 @@
                 // Botão de editar
                 const btnEditar = document.createElement("button");
                 btnEditar.textContent = "Editar";
-                btnEditar.onclik = async () => {
+                btnEditar.onclick = async () => {
                     // Abre o prompt para editar o texto
-                    const novoTitulo = prompt("Editar tarefas:", t.titulo);
+                    const novoTitulo = prompt("Editar tarefa:", t.titulo);
                     if (novoTitulo && novoTitulo.trim() !== "") {
                         await fetch("../api/editar.php", {
                             method: "POST",
@@ -67,7 +67,7 @@
                 };
 
                 // Botão de excluir
-                cosnt btnExcluir = document.createElement("button");
+                const btnExcluir = document.createElement("button");
                 btnExcluir.textContent = "Excluir";
                 btnExcluir.onclick = async () => {
                     await fetch("../api/excluir.php", {
@@ -87,7 +87,7 @@
     }
 
     // Adicionar nova tarefa
-    document.getElementById("btnAdicinar").onclick = async () => {
+    document.getElementById("btnAdicionar").onclick = async () => {
         const titulo = document.getElementById("novaTarefa").value;
         if (titulo.trim() ==="") return;
 

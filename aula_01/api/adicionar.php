@@ -9,7 +9,7 @@ header("Content-Type: application/json");
  * Inclui o arquivo de conexão com o banco de dados,
  * que contém as credenciais e a configuração do objeto $conn.
  */
-include("../conxa0/conexao.php");
+include("../conexao/conexao.php");
 
 /**
  * Lê o corpo da requisição HTTP (enviado via fect no JavaScript)

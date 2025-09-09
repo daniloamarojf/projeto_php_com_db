@@ -1,6 +1,6 @@
 <?php
 header("Content_Type: application/json");
-ibclude("../conexao/cobexao.php");
+include("../conexao/conexao.php");
 
 $dados = json_decode(file_get_contents("php://input"), true);
 
