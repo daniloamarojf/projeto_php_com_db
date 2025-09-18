@@ -1,26 +1,27 @@
-<?php
+<?php // Incluido o arquivo de conexão com o bd
 include("../conexao/conexao.php");
 
 $mensagem = "";
 
-// Verifica se o formulário foi enviado
+// Verifica se o formulário foi enviado pelo POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $nome = trim($_POST["nome"] ?? '');
+    $nome = trim($_POST["nome"] ?? ''); // Valor enviado pelo campo nome
 
+    // Verificando se o campo está vazio
     if (empty($nome)) {
         $mensagem = "O nome da disciplina é obrigatório.";
     } else {
         $sql = "INSERT INTO disciplinas (nome) VALUES (?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $nome);
+        $inserindo = $conn->prepare($sql);
+        $inserindo->bind_param("s", $nome);
 
-        if ($stmt->execute()) {
+        if ($inserindo->execute()) {
             $mensagem = "Disciplina adicionada com sucesso!";
         } else {
             $mensagem = "Erro ao adicionar disciplina.";
         }
 
-        $stmt->close();
+        $inserindo->close();
     }
 
     $conn->close();
